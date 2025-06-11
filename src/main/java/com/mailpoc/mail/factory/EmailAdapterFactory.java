@@ -1,9 +1,5 @@
 package com.mailpoc.mail.factory;
 
-
-
-
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -38,7 +34,6 @@ public class EmailAdapterFactory {
         return adapter;
     }
 
-    // Opcional: Para verificar se a configuração está correta na inicialização
     @PostConstruct
     public void validateConfig() {
         if (!adapters.containsKey(mailIntegrationConfig.toUpperCase())) {
@@ -48,4 +43,3 @@ public class EmailAdapterFactory {
         }
     }
 }
-

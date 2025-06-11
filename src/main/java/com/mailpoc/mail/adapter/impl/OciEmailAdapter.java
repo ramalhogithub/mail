@@ -6,8 +6,6 @@ import com.mailpoc.mail.adapter.EmailAdapter;
 import com.mailpoc.mail.dto.EmailOciDTO;
 import com.mailpoc.mail.dto.EmailRequestDTO;
 
-
-
 @Component
 public class OciEmailAdapter implements EmailAdapter<EmailOciDTO> {
 
@@ -20,12 +18,6 @@ public class OciEmailAdapter implements EmailAdapter<EmailOciDTO> {
         ociDto.setSubject(requestDTO.getSubject());
         ociDto.setBody(requestDTO.getContent()); // OCI usa 'body' ao invés de 'content'
 
-        // Validações de tamanho específicas da OCI DTO
-        // Lembre-se que as anotações @Size do DTO de destino já cuidarão disso
-        // automaticamente
-        // no momento da serialização/validação, mas você pode adicionar lógicas
-        // customizadas aqui.
-
         return ociDto;
     }
 
@@ -34,4 +26,3 @@ public class OciEmailAdapter implements EmailAdapter<EmailOciDTO> {
         return "OCI";
     }
 }
-

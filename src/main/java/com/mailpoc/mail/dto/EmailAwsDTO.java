@@ -15,23 +15,23 @@ public class EmailAwsDTO {
     @NotBlank
     @Size(max = 45)
     @Email
-    private String recipient; // E-mail destinatário
+    private String recipient; 
 
     @NotBlank
     @Size(max = 60)
-    private String recipientName; // Nome destinatário
+    private String recipientName; 
 
     @NotBlank
     @Size(max = 45)
     @Email
-    private String sender; // E-mail remetente
+    private String sender; 
 
     @NotBlank
     @Size(max = 120)
-    private String subject; // Assunto do e-mail
+    private String subject; 
 
     @NotBlank
     @Size(max = 256)
-    private String content; // Conteúdo do e-mail
+    private String content; 
 }
 

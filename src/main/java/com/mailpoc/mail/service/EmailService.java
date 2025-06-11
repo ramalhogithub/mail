@@ -1,7 +1,5 @@
 package com.mailpoc.mail.service;
 
-
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mailpoc.mail.dto.EmailRequestDTO;
@@ -25,18 +23,12 @@ public class EmailService {
 
     public void processEmail(EmailRequestDTO emailRequestDTO) {
         try {
-            // Obtém o adaptador correto dinamicamente
+
             Object adaptedObject = adapterFactory.getAdapter().adapt(emailRequestDTO);
 
-            // Serializa o objeto adaptado para JSON
             String jsonOutput = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(adaptedObject);
 
-            // Imprime no console
             log.info("Objeto de e-mail adaptado e serializado:\n{}", jsonOutput);
-
-            // Aqui você "simularia" o envio de e-mail para AWS/OCI
-            // Por exemplo: if (adaptedObject instanceof EmailAwsDTO) { // chamar sdk aws }
-            // else if (adaptedObject instanceof EmailOciDTO) { // chamar sdk oci }
 
         } catch (JsonProcessingException e) {
             log.error("Erro ao serializar o objeto de e-mail para JSON: {}", e.getMessage(), e);
@@ -47,5 +39,3 @@ public class EmailService {
         }
     }
 }
-
-

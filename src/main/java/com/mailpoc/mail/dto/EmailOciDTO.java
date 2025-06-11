@@ -15,24 +15,22 @@ public class EmailOciDTO {
     @NotBlank
     @Size(max = 40)
     @Email
-    private String recipientEmail; // E-mail destinatário
+    private String recipientEmail;
 
     @NotBlank
     @Size(max = 50)
-    private String recipientName; // Nome destinatário
+    private String recipientName;
 
     @NotBlank
     @Size(max = 40)
     @Email
-    private String senderEmail; // E-mail remetente
+    private String senderEmail;
 
     @NotBlank
     @Size(max = 100)
-    private String subject; // Assunto do e-mail
+    private String subject;
 
     @NotBlank
     @Size(max = 250)
-    private String body; // Conteúdo do e-mail
+    private String body;
 }
-
-

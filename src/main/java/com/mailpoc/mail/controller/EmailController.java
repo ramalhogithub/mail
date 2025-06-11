@@ -19,11 +19,19 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/emails")
+@Tag(name = "Serviço de E-mail", description = "Endpoints para o envio de e-mails") 
 public class EmailController {
 
     private static final Logger log = LoggerFactory.getLogger(EmailController.class);
@@ -34,6 +42,16 @@ public class EmailController {
     }
 
     @PostMapping("/send")
+    @ResponseStatus(HttpStatus.NO_CONTENT) // Retorna 204 No Content para sucesso
+    @Operation(summary = "Envia um e-mail", description = "Processa uma requisição para enviar um e-mail usando o provedor configurado.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "E-mail enviado com sucesso", content = @Content),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Map.class))), 
+            @ApiResponse(responseCode = "500", description = "Erro interno do servidor ao enviar e-mail",
+                    content = @Content)
+    })
     public ResponseEntity<Void> sendEmail(@Valid @RequestBody EmailRequestDTO requestDTO) {
         log.info("Requisição recebida para envio de e-mail: {}", requestDTO);
         emailService.processEmail(requestDTO);
